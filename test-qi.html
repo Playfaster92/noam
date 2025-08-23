@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test de QI – Noam Labrousse</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Test de QI de Noam</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="merch.html">Merch</a></li>
+        <li><a href="test-qi.html">Test de QI</a></li>
+        <li><a href="labyrinthe.html">Labyrinthe</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Petit quiz ENIM</h2>
+
+    <!-- 📽️ Vidéo du test -->
+    <div class="video-container" style="text-align:center; margin-bottom:20px;">
+      <video controls>
+        <source src="test_qi.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Formulaire du quiz -->
+    <form id="quiz-form">
+      <div class="question">
+        <p>1. Combien font 2 + 2 ?</p>
+        <label><input type="radio" name="q1" value="3"> 3</label><br>
+        <label><input type="radio" name="q1" value="4"> 4</label><br>
+        <label><input type="radio" name="q1" value="5"> 5</label>
+      </div>
+
+      <div class="question">
+        <p>2. Quelle est la capitale de la France ?</p>
+        <label><input type="radio" name="q2" value="Londres"> Londres</label><br>
+        <label><input type="radio" name="q2" value="Paris"> Paris</label><br>
+        <label><input type="radio" name="q2" value="Rome"> Rome</label>
+      </div>
+
+      <div class="question">
+        <p>3. Quelle école est à Metz ?</p>
+        <label><input type="radio" name="q3" value="ENIM"> ENIM</label><br>
+        <label><input type="radio" name="q3" value="Polytechnique"> Polytechnique</label><br>
+        <label><input type="radio" name="q3" value="ENSAM"> ENSAM</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Valider</button>
+    </form>
+
+    <div id="test-result"></div>
+  </main>
+</body>
+</html>
