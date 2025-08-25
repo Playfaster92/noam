@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bourse (Enimcoin) – Noam Labrousse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    main h2 { text-align:center; margin: 16px 0 6px; color:#002855; }
+
+    .bourse-wrap {
+      display: grid;
+      grid-template-columns: 1.7fr 0.9fr;
+      gap: 20px;
+      padding: 16px 6%;
+      height: calc(100vh - 170px);
+    }
+
+    .bourse-main {
+      background: #fff;
+      border: 1px solid #e7eaf3;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.06);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .bourse-main .tradingview-widget-container { flex: 1; min-height: 0; }
+    #tv-advanced-chart { width: 100%; height: 100%; }
+
+    .bourse-side {
+      display: grid;
+      grid-auto-rows: min-content;
+      gap: 16px;
+      min-height: 0;
+    }
+    .box {
+      background: #fff;
+      border: 1px solid #e7eaf3;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.06);
+      overflow: hidden;
+      padding: 10px;
+    }
+    .ticker-box {
+      margin: 0 6%;
+      border-radius: 12px;
+      border: 1px solid #e7eaf3;
+      box-shadow: 0 6px 16px rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    @media (max-width: 1100px) {
+      .bourse-wrap { grid-template-columns: 1fr; height: auto; }
+      .bourse-main { height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bourse (Enimcoin – EMC)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="merch.html">Merch</a></li>
+        <li><a href="test-qi.html">Test de QI</a></li>
+        <li><a href="labyrinthe.html">Labyrinthe</a></li>
+        <li><a href="bourse.html">Bourse</a></li>
+        <li><a href="contact.html">Me contacter</a></li>
+        <li class="cart-icon">
+          <button id="cart-toggle" aria-label="Ouvrir le panier">
+            🛒 <span id="cart-count" class="cart-badge">0</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Enimcoin (EMC) en direct</h2>
+
+    <!-- Bandeau ticker multi-cryptos -->
+    <div class="ticker-box">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script async type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
+        {
+          "symbols": [
+            {"proName":"CRYPTO:BTCUSD","title":"Enimcoin (EMC)"},  <!-- rebaptisé -->
+            {"proName":"CRYPTO:ETHUSD","title":"Ethereum"},
+            {"proName":"CRYPTO:SOLUSD","title":"Solana"},
+            {"proName":"CRYPTO:BNBUSD","title":"BNB"},
+            {"proName":"CRYPTO:ADAUSD","title":"Cardano"}
+          ],
+          "showSymbolLogo": false,
+          "isTransparent": false,
+          "displayMode": "adaptive",
+          "colorTheme": "light",
+          "locale": "fr"
+        }
+        </script>
+      </div>
+    </div>
+
+    <div class="bourse-wrap">
+      <!-- CHART PRINCIPAL -->
+      <section class="bourse-main">
+        <div class="tradingview-widget-container">
+          <div id="tv-advanced-chart"></div>
+          <script src="https://s3.tradingview.com/tv.js"></script>
+          <script>
+            new TradingView.widget({
+              container_id: "tv-advanced-chart",
+              autosize: true,
+              symbol: "CRYPTO:BTCUSD",      // données réelles BTC
+              interval: "60",
+              timezone: "Europe/Paris",
+              theme: "light",
+              style: "1",
+              locale: "fr",
+              withdateranges: true,
+              range: "1M",
+              hide_side_toolbar: false,
+              hide_top_toolbar: false,
+              allow_symbol_change: true,
+              studies: [
+                "RSI@tv-basicstudies",
+                "MACD@tv-basicstudies",
+                "BollingerBandsR@tv-basicstudies"
+              ]
+            });
+          </script>
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="bourse-side">
+        <!-- Fiche symbole -->
+        <div class="box">
+          <h3 style="text-align:center;margin:6px 0;">Enimcoin (EMC)</h3>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script async type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js">
+            {
+              "symbols": [["CRYPTO:BTCUSD|1D"]],
+              "chartOnly": false,
+              "width": "100%",
+              "height": "220",
+              "locale": "fr",
+              "colorTheme": "light",
+              "autosize": true,
+              "showVolume": true,
+              "showMA": true,
+              "scalePosition": "right",
+              "chartType": "candlesticks",
+              "dateRanges": ["1d|1","1m|30","3m|60","1y|1D","5y|1W","all|1M"]
+            }
+            </script>
+          </div>
+        </div>
+
+        <!-- Analyse technique -->
+        <div class="box">
+          <h3 style="text-align:center;margin:6px 0;">Analyse technique EMC</h3>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script async type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js">
+            {
+              "interval": "1h",
+              "width": "100%",
+              "isTransparent": false,
+              "height": "300",
+              "symbol": "CRYPTO:BTCUSD",   // données BTC mais affichage EMC
+              "showIntervalTabs": true,
+              "displayMode": "single",
+              "locale": "fr",
+              "colorTheme": "light"
+            }
+            </script>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="cart-panel" class="cart-panel hidden">
+    <div class="cart-panel-header">
+      <h3>Mon panier</h3>
+      <button id="cart-close" aria-label="Fermer">✖</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-panel-footer">
+      <div>Total : <span id="cart-total">0,00 €</span></div>
+      <button id="cart-clear" class="btn-outline">Vider</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

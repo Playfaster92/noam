@@ -555,3 +555,32 @@ main h2 {
   z-index: 5; /* au-dessus de la roue, mais en-dessous du pointeur */
   pointer-events: none; /* pour que ça n'empêche pas les clics */
 }
+
+
+.bourse-wrap {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr;
+  gap: 20px;
+  padding: 20px 6%;
+  margin-top: 10px;
+  height: calc(100vh - 160px); /* occupe presque tout l’écran (ajuste le 160px si header/nav + marge) */
+}
+
+.bourse-main {
+  background: #fff;
+  border: 1px solid #e7eaf3;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.bourse-main .tradingview-widget-container {
+  flex: 1;               /* prend tout l’espace restant */
+  height: 100%;          /* nécessaire pour le chart */
+}
+
+#tv-advanced-chart {
+  width: 100%;
+  height: 100%;
+}
