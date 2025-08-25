@@ -5,6 +5,63 @@
   <title>Labyrinthe ENIM – Noam Labrousse</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <style>
+    .roulette-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    #wheelCanvas {
+      border-radius: 50%;
+    }
+
+    #pointer {
+      position: absolute;
+      top: 20%;  left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10; /* au-dessus de la roue et de la photo */
+      pointer-events: none; /* pour ne pas gêner les clics */
+    }
+
+
+    #pointer .arrow {
+      top : 20%;
+      width: 20px;
+      height: 30px;
+      background-color: black;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* triangle */
+    }
+
+    #pointer .stick {
+      width: 4px;            /* largeur de la tige */
+      height: 100px;          /* longueur jusqu’à la flèche */
+      background-color: black;
+    }
+
+
+
+
+    #spinButton {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #resultMessage {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -25,6 +82,18 @@
     <h2>🎯 Le labyrinthe de l'ENIMMM</h2>
     <canvas id="mazeCanvas" width="600" height="400"></canvas>
     <p id="mazeMessage"></p>
+
+    <!-- 🎡 La roulette -->
+  <div class="roulette-container">
+    <div id="pointer">
+      <div class="arrow"></div>
+      <div class="stick"></div>
+    </div>
+    <canvas id="wheelCanvas" width="500" height="500"></canvas>
+    <img id="noamCenter" src="roulette.png" alt="Noam">
+    <button id="spinButton">🎡 Faire tourner</button>
+    <div id="resultMessage"></div>
+  </div>
 
   </main>
 </body>

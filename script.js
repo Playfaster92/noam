@@ -285,3 +285,97 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") lightbox.style.display = "none";
   });
 });
+
+// --- 🎡 Roulette truquée ENIM ---
+const wheelCanvas = document.getElementById("wheelCanvas");
+const ctx = wheelCanvas.getContext("2d");
+const spinButton = document.getElementById("spinButton");
+const resultMessage = document.getElementById("resultMessage");
+
+const schools = ["ENIM", "ENIL", "IMT Lille", "Harvard", "X", "Oxford"];
+const colors = ["#f54242", "#42a5f5", "#66bb6a", "#ffeb3b", "#ab47bc", "#ffa726"];
+const slices = 12; // 12 cases
+const arc = (2 * Math.PI) / slices;
+let angle = 0;
+let spinning = false;
+
+// 🎨 Dessin de la roue
+function drawWheel() {
+  for (let i = 0; i < slices; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = colors[i % schools.length];
+    ctx.moveTo(250, 250);
+    ctx.arc(250, 250, 250, arc * i + angle, arc * (i + 1) + angle);
+    ctx.lineTo(250, 250);
+    ctx.fill();
+
+    // Texte
+    ctx.save();
+    ctx.fillStyle = "black";
+    ctx.translate(250, 250);
+    ctx.rotate(arc * i + arc / 2 + angle);
+    ctx.textAlign = "right";
+    ctx.font = "bold 16px Arial";
+    ctx.fillText(schools[i % schools.length], 230, 10);
+    ctx.restore();
+  }
+}
+
+// 🎡 Faire tourner
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
+  resultMessage.textContent = "";
+
+  let spinAngle = Math.random() * 2000 + 2000; // rotation aléatoire
+  let finalAngle = angle + spinAngle;
+  let duration = 4000; // 2s
+  let start = null;
+
+  function animate(timestamp) {
+    if (!start) start = timestamp;
+    let progress = (timestamp - start) / duration;
+    if (progress > 1) progress = 1;
+
+    // Décélération fluide
+    let easeOut = 1 - Math.pow(1 - progress, 3);
+    angle = finalAngle * easeOut;
+
+    ctx.clearRect(0, 0, 500, 500);
+    drawWheel();
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // --- Stop net ---
+      spinning = false;
+
+      // --- Après une petite pause, truquage vers ENIM ---
+      forceToEnim();
+
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// --- TRUQUAGE : sauter directement sur ENIM ---
+function forceToEnim() {
+  // ENIM = case 0 (et 6)
+  let enimIndex = 0; 
+  let enimArc = arc * (enimIndex + 2) + arc / 2 ;
+
+  // recaler pile sur ENIM
+  angle = enimArc;
+
+  ctx.clearRect(0, 0, 500, 500);
+  drawWheel();
+
+  // 🎉 Message
+  resultMessage.textContent = "🎉 Félicitations Noam ! Tu es à l’ENIM 🎓";
+}
+
+
+// Initialisation
+drawWheel();
+spinButton.addEventListener("click", spinWheel);

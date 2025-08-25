@@ -541,3 +541,17 @@ main h2 {
 
   .video-fit { height: auto; max-height: 500px; }
 }
+
+/* roulette noam */
+
+#noamCenter {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;   /* ajuste la taille de la photo */
+  height: 100px;  /* ou mets "auto" si tu veux garder proportions */
+  border-radius: 50%; /* rond comme une médaille */
+  z-index: 5; /* au-dessus de la roue, mais en-dessous du pointeur */
+  pointer-events: none; /* pour que ça n'empêche pas les clics */
+}
