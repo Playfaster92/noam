@@ -1,3 +1,117 @@
+/* =========================
+   PANIER (mini-panier + localStorage)
+========================= */
+const CART_KEY = "noam_cart_v1";
+
+function cartGet() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch { return []; }
+}
+function cartSave(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  cartUpdateBadge();
+}
+function cartAdd({id, name, price, image}) {
+  const cart = cartGet();
+  const idx = cart.findIndex(p => p.id === id);
+  const p = Number(String(price).replace(",", "."));
+  if (idx >= 0) cart[idx].qty += 1;
+  else cart.push({ id, name, price: p, image: image || "", qty: 1 });
+  cartSave(cart);
+}
+function cartUpdateQty(id, qty) {
+  const cart = cartGet();
+  const i = cart.findIndex(p => p.id === id);
+  if (i === -1) return;
+  cart[i].qty = Math.max(1, Number(qty) || 1);
+  cartSave(cart);
+}
+function cartRemove(id) { cartSave(cartGet().filter(p => p.id !== id)); }
+function cartClear()    { cartSave([]); }
+function eur(n) { return (Number(n)||0).toLocaleString("fr-FR",{style:"currency",currency:"EUR"}); }
+
+function cartUpdateBadge() {
+  const el = document.getElementById("cart-count");
+  if (!el) return;
+  const total = cartGet().reduce((s,p)=>s+p.qty,0);
+  el.textContent = total;
+}
+
+/* ——— Listeners globaux ——— */
+document.addEventListener("DOMContentLoaded", () => {
+  cartUpdateBadge();
+
+  // Event delegation pour tous les boutons Ajouter
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".add-to-cart");
+    if (!btn) return;
+
+    const id    = btn.dataset.id;
+    const name  = btn.dataset.name;
+    const price = btn.dataset.price;   // peut être "19,99" -> on gère
+    const image = btn.dataset.image || "";
+
+    if (!id || !name || !price) return;
+    cartAdd({ id, name, price, image });
+
+    // petit feedback
+    const txt = btn.textContent;
+    btn.textContent = "Ajouté ✓";
+    setTimeout(()=> btn.textContent = txt, 900);
+  });
+
+  // Mini-panier (si présent sur la page)
+  const panel   = document.getElementById("cart-panel");
+  const toggle  = document.getElementById("cart-toggle");
+  const closeBt = document.getElementById("cart-close");
+  const itemsEl = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  const clearBt = document.getElementById("cart-clear");
+
+  if (toggle && panel) toggle.addEventListener("click", () => {
+    panel.classList.add("show");
+    renderMiniCart();
+  });
+  if (closeBt && panel) closeBt.addEventListener("click", () => panel.classList.remove("show"));
+  if (clearBt) clearBt.addEventListener("click", () => { cartClear(); renderMiniCart(); });
+
+  function renderMiniCart() {
+    if (!itemsEl || !totalEl) return;
+    const cart = cartGet();
+    itemsEl.innerHTML = "";
+    if (cart.length === 0) {
+      itemsEl.innerHTML = "<p>Ton panier est vide 🛒</p>";
+      totalEl.textContent = eur(0);
+      cartUpdateBadge();
+      return;
+    }
+    let total = 0;
+    cart.forEach(p => {
+      const row = document.createElement("div");
+      row.className = "cart-item";
+      const sub = p.price * p.qty;
+      total += sub;
+      row.innerHTML = `
+        <span>${p.name}</span>
+        <input type="number" min="1" value="${p.qty}" data-id="${p.id}">
+        <span>${eur(sub)}</span>
+        <button class="rm" data-id="${p.id}">✖</button>
+      `;
+      itemsEl.appendChild(row);
+    });
+    totalEl.textContent = eur(total);
+    cartUpdateBadge();
+
+    itemsEl.querySelectorAll('input[type="number"]').forEach(inp=>{
+      inp.onchange = () => { cartUpdateQty(inp.dataset.id, inp.value); renderMiniCart(); };
+    });
+    itemsEl.querySelectorAll('button.rm').forEach(b=>{
+      b.onclick = () => { cartRemove(b.dataset.id); renderMiniCart(); };
+    });
+  }
+});
+
+
 // =========================
 // TEST DE QI (random, pas utilisé pour le quiz ENIM)
 // =========================

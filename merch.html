@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Merch – Noam Labrousse</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
@@ -16,58 +17,187 @@
         <li><a href="test-qi.html">Test de QI</a></li>
         <li><a href="labyrinthe.html">Labyrinthe</a></li>
         <li><a href="contact.html">Me contacter</a></li>
+
+        <!-- Icône panier (restera à droite grâce au CSS) -->
+        <li class="cart-icon">
+          <button id="cart-toggle" aria-label="Ouvrir le panier">
+            🛒 <span id="cart-count" class="cart-badge">0</span>
+          </button>
+        </li>
       </ul>
     </nav>
   </header>
 
   <main>
     <h2>Boutique officielle</h2>
+
+    <!-- Grille produits (mise en page contrôlée par style.css) -->
     <div class="merch-grid">
-      
+      <!-- T-shirt -->
       <div class="item">
-        <img src="t-shirt.png" alt="T-shirt Noam">
+        <img src="t-shirt.png" alt="T-shirt Noam" />
         <h3>T-shirt Noam</h3>
+        <p class="desc">Un T-shirt unique pour représenter fièrement Noam en toutes occasions.</p>
         <p class="price">19,99 €</p>
-        <button>Ajouter au panier</button>
+        <button
+          class="add-to-cart"
+          data-id="tshirt"
+          data-name="T-shirt Noam"
+          data-price="19.99"
+          data-image="t-shirt.png"
+        >Ajouter au panier</button>
       </div>
 
+      <!-- Mug -->
       <div class="item">
-        <img src="mug.png" alt="Mug Noam">
+        <img src="mug.png" alt="Mug Noam" />
         <h3>Mug Noam</h3>
+        <p class="desc">Commence ta journée avec le mug officiel Noam. Café + motivation assurée ☕.</p>
         <p class="price">12,99 €</p>
-        <button>Ajouter au panier</button>
+        <button
+          class="add-to-cart"
+          data-id="mug"
+          data-name="Mug Noam"
+          data-price="12.99"
+          data-image="mug.png"
+        >Ajouter au panier</button>
       </div>
 
+      <!-- Casquette -->
       <div class="item">
-        <img src="casquette.png" alt="Casquette Noam">
+        <img src="casquette.png" alt="Casquette Noam" />
         <h3>Casquette Noam</h3>
+        <p class="desc">Simple, souple et passepartout. La casquette de l'enim est bien plus qu'un simple couvre chef, sa composition en matériaux spécialement énimiens garanti une absorption des rayonnements UV optimale ainsi qu'une respiration parfaite du cuir chevelu lors des utilisations plus athlétiques. Un exemplaire sur 10 contient une signature de Noam en personne dans son intérieur.</p>
         <p class="price">15,99 €</p>
-        <button>Ajouter au panier</button>
+        <button
+          class="add-to-cart"
+          data-id="casquette"
+          data-name="Casquette Noam"
+          data-price="15.99"
+          data-image="casquette.png"
+        >Ajouter au panier</button>
       </div>
 
+      <!-- Stabilo -->
       <div class="item">
-        <img src="stabilo.png" alt="stabilo Noam">
-        <h3>Stabilo Enim</h3>
-        <p class="price">gratuit €</p>
-        <button>Ajouter au panier</button>
+        <img src="stabilo.png" alt="Stabilo ENIM" />
+        <h3>Stabilo ENIM</h3>
+        <p class="desc">L’outil indispensable pour surligner ton avenir. Le stabilo enim permet un surlignement de qualité supérieure, avec une adhérence parfaite au papier. </p>
+        <p class="price">0,00 €</p>
+        <button
+          class="add-to-cart"
+          data-id="stabilo"
+          data-name="Stabilo ENIM"
+          data-price="0.00"
+          data-image="stabilo.png"
+        >Ajouter au panier</button>
       </div>
 
-        <div class="item">
-        <img src="chaussures.png" alt="chaussures Noam">
-        <h3>Chaussures Enim</h3>
-        <p class="price">19.99 €</p>
-        <button>Ajouter au panier</button>
+      <!-- Chaussures -->
+      <div class="item">
+        <img src="chaussures.png" alt="Chaussures ENIM" />
+        <h3>Chaussures ENIM</h3>
+        <p class="desc">Confort et performance. Marche comme un vrai ingénieur de l’ENIM. Née en 1726, la chaussure ENIM témoigne d'un savoir faire ancestral transmis de générations en générations, qui lui vaut son inscription au patrimoine mondial de l'UNESCO en 2022. </p>
+        <p class="price">19,99 €</p>
+        <button
+          class="add-to-cart"
+          data-id="chaussures"
+          data-name="Chaussures ENIM"
+          data-price="19.99"
+          data-image="chaussures.png"
+        >Ajouter au panier</button>
       </div>
 
-        <div class="item">
-        <img src="armure.png" alt="armure Noam">
-        <h3>Armure Enim</h3>
-        <p class="price">10000 €</p>
-        <button>Ajouter au panier</button>
+      <!-- Armure -->
+      <div class="item">
+        <img src="armure.png" alt="Armure ENIM" />
+        <h3>Armure ENIM</h3>
+        <p class="desc">Pièce rare d'une collection unique de l'ENIM, l'armure enimienne est l'outfit idéal pour une journée d'étude à l'enim.</p>
+        <p class="price">10 999,99 €</p>
+        <button
+          class="add-to-cart"
+          data-id="armure"
+          data-name="Armure ENIM"
+          data-price="10000"
+          data-image="armure.png"
+        >Ajouter au panier</button>
       </div>
 
+      <!-- Sous-marin -->
+      <div class="item">
+        <img src="sousmarin.png" alt="Sous-Marin ENIM" />
+        <h3>Sous-Marin ENIM</h3>
+        <p class="desc">Premier sous marin nucléaire construit par un ingénieur de l'ENIM, le sous marin ENIM dispose en son intérieur de différentes salles challenge garantissant un séjour agréable et riche lors des escapades sous marines du weekend</p>
+        <p class="price">20 000 000 000,00 €</p>
+        <button
+          class="add-to-cart"
+          data-id="sousmarin"
+          data-name="Sous-Marin ENIM"
+          data-price="20000000000"
+          data-image="sousmarin.png"
+        >Ajouter au panier</button>
+      </div>
+
+      <!-- Van Gog -->
+      <div class="item">
+        <img src="vangog.png" alt="Van Gogh" />
+        <h3>Portrait de l'ENIM peint par Van Gogh lui même</h3>
+        <p class="desc">Une oeuvre d'art du maître fauviste redécouverte récemment et d'une valeur inestimable</p>
+        <p class="price">Venez mp €</p>
+        <button
+          class="add-to-cart"
+          data-id="sousmarin"
+          data-name="Sous-Marin ENIM"
+          data-price="20000000000"
+          data-image="sousmarin.png"
+        >Ajouter au panier</button>
+      </div>
+
+      <!-- ONU -->
+      <div class="item">
+        <img src="ONU.png" alt="ONU" />
+        <h3>Siège de l'ENIM à l'ONU</h3>
+        <p class="desc">Possibilité de représenter l'ENIM à l'ONU. Siège fait sur mesure et permettant un repos maximal des disques intervertébraux. Option chauffante.</p>
+        <p class="price">Venez mp €</p>
+        <button
+          class="add-to-cart"
+          data-id="sousmarin"
+          data-name="Sous-Marin ENIM"
+          data-price="20000000000"
+          data-image="sousmarin.png"
+        >Ajouter au panier</button>
+      </div>
+
+      
+
+      <!-- ENIMLAND -->
+      <div class="item">
+        <img src="ENIMLAND.png" alt="Entrée parc thématique ENIM" />
+        <h3>Entrée parc thématique ENIM</h3>
+        <p class="desc">Billet pour l’expérience unique ENIMLAND : attractions, labos et fun !</p>
+        <p class="price">20,99 €</p>
+        <button
+          class="add-to-cart"
+          data-id="enimland"
+          data-name="Entrée parc thématique ENIM"
+          data-price="20.00"
+          data-image="ENIMLAND.png"
+        >Ajouter au panier</button>
+      </div>
     </div>
   </main>
+
+  <!-- Panneau panier latéral -->
+  <div id="cart-panel" class="cart-panel hidden">
+    <div class="cart-panel-header">
+      <h3>Mon panier</h3>
+      <button id="cart-close" aria-label="Fermer">✖</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-panel-footer">
+      <div>Total : <span id="cart-total">0,00 €</span></div>
+      <button id="cart-clear" class="btn-outline">Vider</button>
+    </div>
+  </div>
 </body>
 </html>
-
