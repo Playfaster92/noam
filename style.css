@@ -7,6 +7,7 @@ body {
   background: #f9f9fb;
   color: #333;
   line-height: 1.6;
+  font-size: 17px;
 }
 
 h1, h2, h3 {
@@ -165,11 +166,10 @@ nav a:hover {
 
 .item img {
   width: 100%;
-  height: 100%;   /* fixe la hauteur */
-  object-fit: cover; /* coupe/centre l'image pour qu'elle rentre */
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
-
 
 /* === TEST DE QI === */
 form {
@@ -182,9 +182,7 @@ form {
   text-align: left;
 }
 
-form label {
-  font-weight: 600;
-}
+form label { font-weight: 600; }
 
 form input {
   width: 100%;
@@ -229,7 +227,7 @@ canvas {
   margin-top: 15px;
 }
 
-/* === FOOTER (optionnel) === */
+/* === FOOTER === */
 footer {
   text-align: center;
   padding: 20px;
@@ -237,7 +235,6 @@ footer {
   color: white;
   margin-top: 40px;
 }
-
 
 /* === PORTFOLIO / GALLERY === */
 .gallery {
@@ -247,17 +244,10 @@ footer {
   padding: 30px 10%;
 }
 
-@media (max-width: 980px) {
-  .gallery { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .gallery { grid-template-columns: 1fr; padding: 20px; }
-}
-
 .card {
   background: #fff;
   border-radius: 12px;
-  border: 2px solid #e7eaf3;         /* encadrement */
+  border: 2px solid #e7eaf3;
   box-shadow: 0 4px 12px rgba(0,0,0,.06);
   overflow: hidden;
   transition: transform .2s ease, box-shadow .2s ease;
@@ -285,18 +275,20 @@ footer {
 
 /* === LIGHTBOX === */
 #lightbox {
-  display: none; 
-  position: fixed; 
-  z-index: 2000; 
-  top: 0; left: 0; 
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8); 
-  justify-content: center; 
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
   align-items: center;
 }
 
 #lightbox img {
-  max-width: 90%; 
+  max-width: 90%;
   max-height: 90%;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5);
@@ -313,65 +305,24 @@ main h2 {
 .quiz-video-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  margin: 30px auto;
-  max-width: 900px;
-}
-
-.quiz-video-container form {
-  flex: 1;
-  max-width: 400px;
-}
-
-.quiz-video-container .video-container {
-  flex: 1;
-  text-align: center;
-}
-
-.quiz-video-container video {
-  width: 100%;
-  max-width: 350px;  /* réduit la taille de la vidéo */
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* Résultat plus visible */
-#test-result {
-  text-align: center;
-  font-size: 2em;     /* plus grand */
-  font-weight: bold;
-  color: #002855;
-  margin-top: 20px;
-}
-
-
-/* === QUIZ + VIDEO côte à côte (quiz compact, vidéo large) === */
-/* Conteneur global */
-.quiz-video-container {
-  display: flex;
-  justify-content: center;
   align-items: stretch;
   gap: 40px;
   margin: 30px auto;
-  max-width: 1300px;   /* élargi pour que la vidéo ait plus de place */
+  max-width: 1300px;
   padding: 0 16px;
 }
 
-/* Quiz compact */
 .form-panel {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   border: 1px solid #e7eaf3;
-  width: 360px;        /* largeur fixe pour garder le quiz compact */
+  width: 360px;
   padding: 20px;
 }
 
-/* Bloc vidéo large */
 .video-panel {
-  flex: 2;             /* prend 2x plus de place que le quiz */
+  flex: 2;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
@@ -380,40 +331,36 @@ main h2 {
   justify-content: center;
   align-items: stretch;
   padding: 0;
-  width: 360px;
 }
 
-/* Vidéo qui occupe tout le cadre */
 .video-fit {
-  width: 120%;
+  width: 100%;
   height: 100%;
   border-radius: 12px;
-  object-fit: cover;   /* rempli le cadre */
+  object-fit: cover;
 }
 
-/* Responsive : empile sur mobile */
-@media (max-width: 980px) {
-  .quiz-video-container {
-    flex-direction: column;
-  }
-  .form-panel, .video-panel {
-    width: 100%;
-  }
-  .video-fit {
-    height: auto;
-    max-height: 500px;
-  }
+#test-result {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #002855;
+  margin-top: 20px;
 }
 
-
-/* === MODALE DE RÉSULTAT === */
+/* === MODALE === */
 .modal.hidden { display: none; }
+
 .modal {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.6);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 3000;
 }
+
 .modal-card {
   background: #fff;
   border-radius: 14px;
@@ -424,15 +371,18 @@ main h2 {
   box-shadow: 0 12px 36px rgba(0,0,0,0.25);
   border: 1px solid #e7eaf3;
 }
+
 .modal-card #resultText {
-  font-size: 2.2rem;         /* bien visible */
+  font-size: 2.2rem;
   font-weight: 800;
   color: #002855;
   line-height: 1.2;
 }
+
 .modal-close {
   position: absolute;
-  top: 14px; right: 16px;
+  top: 14px;
+  right: 16px;
   background: transparent;
   border: none;
   font-size: 28px;
@@ -444,7 +394,7 @@ main h2 {
 /* === CONTACT === */
 .contact-container {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;   /* grande photo à gauche */
+  grid-template-columns: 1.1fr 1fr;
   gap: 32px;
   padding: 40px 8%;
   align-items: start;
@@ -452,7 +402,7 @@ main h2 {
 
 .contact-photo img {
   width: 100%;
-  height: 78vh;              /* très grand visuel */
+  height: 78vh;
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 10px 28px rgba(0,0,0,0.18);
@@ -489,26 +439,48 @@ main h2 {
   align-items: center;
 }
 
-.contact-list span {
-  font-weight: 600;
-  color: #002855;
-}
+.contact-list span { font-weight: 600; color: #002855; }
 
-.contact-list a {
-  color: #002855;
-  font-weight: 600;
-  word-break: break-word;
-}
+.contact-list a { color: #002855; font-weight: 600; word-break: break-word; }
+
 .contact-list a:hover { text-decoration: underline; }
 
-/* Responsive */
+/* === RESPONSIVE === */
 @media (max-width: 980px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+
+  .quiz-video-container { flex-direction: column; }
+  .form-panel, .video-panel { width: 100%; }
+
   .contact-container {
     grid-template-columns: 1fr;
     padding: 24px 6%;
   }
-  .contact-photo img {
-    height: 46vh;
-  }
+
+  .contact-photo img { height: 46vh; }
 }
 
+@media (max-width: 640px) {
+  body { font-size: 16px; line-height: 1.8; }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.4em; }
+  h3 { font-size: 1.2em; }
+
+  #portfolio { flex-direction: column; align-items: center; }
+  .portfolio-item { width: 90%; }
+
+  .gallery { grid-template-columns: 1fr; padding: 20px; }
+
+  .cv-container { flex-direction: column; padding: 20px; }
+
+  form { width: 100%; max-width: 90%; }
+  form input, form button { font-size: 1em; padding: 12px; }
+
+  .video-fit { height: auto; max-height: 500px; }
+}
