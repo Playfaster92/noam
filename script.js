@@ -292,7 +292,7 @@ const ctx = wheelCanvas.getContext("2d");
 const spinButton = document.getElementById("spinButton");
 const resultMessage = document.getElementById("resultMessage");
 
-const schools = ["ENIM", "ENIL", "IMT Lille", "Harvard", "X", "Oxford"];
+const schools = ["ENIM", "ENIN", "IMT Lille", "Harvard", "X", "Oxford"];
 const colors = ["#f54242", "#42a5f5", "#66bb6a", "#ffeb3b", "#ab47bc", "#ffa726"];
 const slices = 12; // 12 cases
 const arc = (2 * Math.PI) / slices;
@@ -372,7 +372,7 @@ function forceToEnim() {
   drawWheel();
 
   // 🎉 Message
-  resultMessage.textContent = "🎉 Félicitations Noam ! Tu es à l’ENIM 🎓";
+  resultMessage.textContent = "🎉 Félicitations Noam ! Tu vas à l’ENIM 🎓";
 }
 
 
